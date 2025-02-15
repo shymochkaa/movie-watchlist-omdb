@@ -1,3 +1,27 @@
 body {
     margin: 0;
 }
+
+
+
+
+  
+  header {
+    width: 100%; /* Desired width */
+    height: 210px; /* Desired height */
+    background-image: url('../images/header.jpg'); /* Your background image */
+    background-size: cover; /* Ensures the image covers the container */
+    background-position: 0 21%; /* Centers the image */
+    position: relative; /* Needed for the overlay */
+    
+  }
+  
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0%; /* Position the rectangle (adjust as needed) */
+    left: 0%; /* Position the rectangle (adjust as needed) */
+    width: 100%; /* Width of the rectangle */
+    height: 100%; /* Height of the rectangle */
+    background: rgba(0, 0, 0, 0.6); /* 60% black transparent rectangle */
+  }
