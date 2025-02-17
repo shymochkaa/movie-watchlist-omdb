@@ -1,27 +1,145 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
 body {
     margin: 0;
+    font-family: "Inter", serif;
+}
+
+
+header, main {
+    margin: 0 auto;
+    width: 550px;
+    
 }
 
 
 
+header {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    overflow: visible;
+    height: 208px;
+}
 
-  
-  header {
-    width: 100%; /* Desired width */
-    height: 210px; /* Desired height */
-    background-image: url('../images/header.jpg'); /* Your background image */
-    background-size: cover; /* Ensures the image covers the container */
-    background-position: 0 21%; /* Centers the image */
-    position: relative; /* Needed for the overlay */
+.header-img {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     
-  }
-  
-  header::before {
-    content: '';
+    z-index: -1; 
+}
+.header-title-container {
+    
+    display: flex;
+    width: 100%;
+    padding: 0em 2.8125em;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1; 
+    
+}
+.header-title, .my-watchlist-link {
+    margin: 0;
+    font-family: "Inter", serif;
+}
+
+.header-title {
+    color: #FFFFFF;
+    font-size: 2.674375rem;
+    font-weight: 800;
+
+}
+
+.my-watchlist-link {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+
+.search-div {
+    background-color: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    width: 462px;
+    margin-top: 150px;
     position: absolute;
-    top: 0%; /* Position the rectangle (adjust as needed) */
-    left: 0%; /* Position the rectangle (adjust as needed) */
-    width: 100%; /* Width of the rectangle */
-    height: 100%; /* Height of the rectangle */
-    background: rgba(0, 0, 0, 0.6); /* 60% black transparent rectangle */
-  }
+    bottom: -22px;
+    left: 50%; 
+    transform: translateX(-50%); 
+   
+}
+
+.search-icon {
+    color: #9CA3AF;
+    padding: 0 0.5em 0 0.5em;
+    cursor: pointer;
+}
+
+.search-input {
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    width: 73%;
+    padding: 1em 1em 1em 0.5em;
+    height: 95%;
+    
+}
+  
+.search-btn {
+    background-color: #F9FAFB;
+    border-radius: 0px 6px 6px 0px;
+    border: none;
+    border-left: 1px solid #D1D5DB;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    padding: 1em 2em;
+    margin-left: auto;
+    height: 100%;
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+.start-exploring {
+    width: 150px;
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 13.25em;
+
+}
+
+.film-icon {
+   
+    font-size: 4.375rem;
+    color: #DFDDDD;
+}
+
+.start-exploring p {
+    margin: 0;
+    font-size: 1.125rem;
+    color: #DFDDDD;
+    font-weight: 700;
+}

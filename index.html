@@ -16,27 +16,31 @@
 </head>
 <body>
     <header>
-        <!-- <img class="header-img" src="./images/header.jpg" alt="black and white photo frame on white wall"> -->
-        <h1 class="header-title">Find your film</h1>
-        <a id="my-watchlist-link" class="my-watchlist-link" href="./pages/my-watchlist-page.html">My Watchlist</a>
-
-        <div class="search-div">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="search" id="film-search" name="filmSearch" placeholder="Blade Runner" aria-label="Search"/>
-            <button>Search</button>
+        <img class="header-img" src="./images/header.png" alt="black and white photo frame on white wall">
+        <div class="header-title-container">
+            <h1 class="header-title">Find your film</h1>
+            <a id="my-watchlist-link" class="my-watchlist-link" href="./pages/my-watchlist-page.html">My Watchlist</a>
         </div>
+        <div class="search-div">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="search" id="film-search" class="search-input" name="filmSearch" placeholder="Search for a movie" aria-label="Search"/>
+            <button id="search-btn" class="search-btn">Search</button>
+        </div>
+
         
     </header>
+    
     <main>
+        
         <div id="start-exploring" class="start-exploring">
-            <i class="fa-solid fa-film"></i>
+            <i class="fa-solid fa-film film-icon"></i>
             <p>Start exploring</p>
         </div>
-        <div id="error-message-main" class="error-message-main">
+        <div id="error-message-main" class="error-message-main hidden">
             Unable to find what you’re looking for. Please try another search.
         </div>
 
-        <div id="search-results-container" class="search-results-container">
+        <div id="search-results-container" class="search-results-container hidden">
             <div id="movie-id" class="movie">
                 <img class="movie-img" src="" alt="">
                 <div class="movie-info">
