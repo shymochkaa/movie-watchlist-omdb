@@ -16,14 +16,17 @@
 </head>
 <body>
     <header>
-        <img class="header-img" src="../images/header.jpg" alt="black and white photo frame on white wall">
-        <h1 class="header-title">Find your film</h1>
-        <a id="my-watchlist-link" class="my-watchlist-link" href="../index.html">Search for movies</a>
+        <img class="header-img" src="../images/header.png" alt="black and white photo frame on white wall">
+
+        <div class="header-title-container">
+            <h1 class="header-title">Find your film</h1>
+            <a id="my-watchlist-link" class="my-watchlist-link" href="../index.html">Search for movies</a>
+        </div>
 
     </header>
     <main>
     
-        <div id="error-message-main" class="error-message-main">
+        <div id="error-message-my-watchlist" class="error-message-main error-message-my-watchlist hidden">
 
             <p>Your watchlist is looking a little empty...</p>
            
@@ -31,25 +34,30 @@
 
         </div>
 
-        <div id="search-results-container" class="search-results-container">
+        <div id="my-watchlist-container" class="my-watchlist-container">
             <div id="movie-id" class="movie">
-                <img class="movie-img" src="" alt="">
-                <div class="movie-info">
-                    <div class="movie-title-container">
-                        <h2 class="movie-title">Blade Runner</h2>
-                        <i class="fa-solid fa-star"></i>
-                        <p class="movie-raiting">8.1</p>
+                <img id="movie-img" class="movie-img" src="../images/header-1.jpg" alt="">
+                <div id="movie-info" class="movie-info">
+                    <div id="movie-title-container" class="movie-title-container">
+                        <h2 id="movie-title" class="movie-title">Blade Runner</h2>
+                        <i class="fa-solid fa-star movie-star-icon"></i>
+                        <p id="movie-raiting" class="movie-raiting">8.1</p>
                     </div>
                     <div class="movie-subtitle-container">
-                        <p><span class="movie-duration">164</span> min</p>
-                        <p class="movie-genre">Action, Drama, Mystery</p>
-                        <button id="add-to-watchlist-btn" class="add-to-watchlist-btn"> <span><i class="fa-solid fa-circle-plus"></i></span> Watchlist</button>
+                        <p class="movie-duration"><span id="movie-duration">164</span> min</p>
+                        <p id="movie-genre" class="movie-genre">Action, Drama, Mystery</p>
+                       
+                        
+                        <button id="remove-from-watchlist-btn" class="remove-from-watchlist-btn"> <span><i class="fa-solid fa-circle-minus remove-from-my-watchlist-icon"></i></span> Remove</button>
                     </div>
+                    
                     <p id="movie-plot" class="movie-plot">Young Blade Runner K's discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard, who's been missin...</p>
-                    <div id="movie-separator" class="movie-separator"></div>
-                    <hr>
+                    
                 </div>
+                
             </div>
+            <div id="movie-separator" class="movie-separator"></div>
+                
         </div>
         
     </main>

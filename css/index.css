@@ -78,7 +78,7 @@ header {
     width: 462px;
     margin-top: 150px;
     position: absolute;
-    bottom: -22px;
+    bottom: -18px;
     left: 50%; 
     transform: translateX(-50%); 
    
@@ -95,7 +95,7 @@ header {
     font-size: 0.875rem;
     font-weight: 500;
     width: 73%;
-    padding: 1em 1em 1em 0.5em;
+    padding: 0.75em 0.75em 0.75em 0.5em;
     height: 95%;
     
 }
@@ -109,37 +109,147 @@ header {
     font-size: 0.875rem;
     font-weight: 500;
     color: #374151;
-    padding: 1em 2em;
+    padding: 0.75em 2em;
     margin-left: auto;
     height: 100%;
 }
 
 
 
-.hidden {
-    display: none;
-}
 
-.start-exploring {
-    width: 150px;
-    margin: auto auto;
+
+.start-exploring, .error-message-main {
+    width: 320px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    margin: 13.25em;
-
-}
-
-.film-icon {
-   
-    font-size: 4.375rem;
-    color: #DFDDDD;
-}
-
-.start-exploring p {
-    margin: 0;
+    margin: 13.25em auto;
     font-size: 1.125rem;
     color: #DFDDDD;
     font-weight: 700;
 }
+
+.film-icon {
+    font-size: 4.375rem;
+}
+
+.start-exploring p {
+    margin: 0;
+}
+
+.error-message-my-watchlist {
+    width: 404px;
+}
+
+.redirect-to-main-link {
+    text-decoration: none;
+    color: #363636;
+    font-size: 0.875em;
+}
+
+.search-results-container, .my-watchlist-container {
+    margin: 2.6875em auto;
+    width: 462px;
+}
+
+.my-watchlist-container {
+    margin: 1em auto;
+}
+.movie {
+    display: flex;
+    align-items: center;
+    gap: 1.375em;
+    margin: 1.25em 0;
+}
+
+.movie-img {
+    width: 99px;
+    height: 147.41px;
+}
+
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+}
+
+.movie-title-container, .movie-subtitle-container {
+    display: flex;
+    align-items: center;
+    
+}
+
+.movie-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #000000;
+    margin-right: 0.625em;
+    margin: 0 0.625em 0 0;
+}
+
+.movie-star-icon {
+    font-size:  0.75rem;
+    color: #FEC654;
+    margin-right: 0.4375em;
+}
+
+.movie-raiting {
+    font-size:  0.75rem;
+    color: #111827;
+    margin: 0;
+}
+
+.movie-subtitle-container  {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #111827;
+    
+}
+
+.movie-duration {
+    margin: 0 1.25em 0 0;
+}
+
+.movie-genre {
+    margin: 0 1.875em 0 0;
+}
+
+.add-to-watchlist-btn,
+.remove-from-watchlist-btn {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3125em;
+}
+
+.add-to-my-watchlist-icon,
+.remove-from-my-watchlist-icon {
+    font-size: 1rem;
+    cursor: pointer;
+    color: #111827;
+}
+
+.movie-plot {
+    font-size: 0.875em;
+    color: #6B7280;
+    margin: 0;
+}
+
+
+.movie-separator {
+    width: 461px;
+    height: 1.5px;
+    background-color: #E5E7EB;
+
+}
+.hidden {
+    display: none;
+}
+
