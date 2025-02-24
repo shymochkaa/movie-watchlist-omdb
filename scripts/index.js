@@ -1,48 +1,48 @@
-const filmSearchInput = document.getElementById("film-search")
-const searchBtn = document.getElementById("search-btn")
-const searchResultsContainer = document.getElementById("search-results-container")
+const filmSearchInput = document.getElementById("film-search");
+const searchBtn = document.getElementById("search-btn");
+const searchResultsContainer = document.getElementById("search-results-container");
 const myWatchlistArr = [];
-let allMovies = []
-const myWatchlistContainer = document.getElementById("my-watchlist-container")
-console.log(myWatchlistContainer)
+let allMovies = [];
+const myWatchlistContainer = document.getElementById("my-watchlist-container");
+const startExploring = document.getElementById("start-exploring");
+const errorMessageMain = document.getElementById("error-message-main");
 
-searchBtn.addEventListener('click', ()=> {
-    const userInput = filmSearchInput.value
-    if(userInput){
-        handleSearch(userInput);
-    }
-    
-} )
-
-
-
+searchBtn.addEventListener("click", () => {
+  startExploring.classList.add("hidden");
+  const userInput = filmSearchInput.value;
+  if (userInput) {
+    handleSearch(userInput);
+  }
+});
 
 async function handleSearch(searchRequest) {
-    const apiKey = "976c63cc"; // Your API key
-    const searchUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchRequest}`;
+  const apiKey = "976c63cc"; 
+  const searchUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchRequest}`;
 
-    try {
-        // Step 1: Fetch the search results
-        const response = await fetch(searchUrl);
-        const data = await response.json();
+  try {
+    errorMessageMain.classList.add("hidden");
 
-        if (data.Response === "True") {
-            console.log(data.Search); // List of movies
-            console.log(data.Search[1].imdbID); // Example: Print the second movie's IMDb ID
+    // Fetch the search results
+    const response = await fetch(searchUrl);
+    const data = await response.json();
 
-            // Step 2: Fetch full details for each movie using imdbID
-            const movieDetailsPromises = data.Search.map(movie =>
-                fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}&plot=short`).then(res => res.json())
-            );
+    if (data.Response === "True") {
+      
 
-            // Step 3: Wait for all requests to complete
-            const movieDetails = await Promise.all(movieDetailsPromises);
+      // Fetch full details for each movie using imdbID
+      const movieDetailsPromises = data.Search.map((movie) =>
+        fetch(
+          `http://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}&plot=short`
+        ).then((res) => res.json())
+      );
 
-            let html = ``
+      // Wait for all requests to complete
+      const movieDetails = await Promise.all(movieDetailsPromises);
 
+      let html = ``;
 
-            movieDetails.forEach((movie, index) => {
-                html += `
+      movieDetails.forEach((movie, index) => {
+        html += `
                 <div id="movie-id-${index}" class="movie">
                 <img id="movie-img-${index}" class="movie-img" src="${movie.Poster}" alt="">
                 <div id="movie-info-${index}" class="movie-info">
@@ -63,91 +63,53 @@ async function handleSearch(searchRequest) {
                 
             </div>
             <div id="movie-separator-${index}" class="movie-separator"></div>
-                `
-              
-            })
+                `;
+      });
 
-           
-            
+      searchResultsContainer.innerHTML = html;
+      allMovies = movieDetails;
 
-            searchResultsContainer.innerHTML= html
+      //Event listener for add to my watchlist button
 
-
-            allMovies = movieDetails
-
-            console.log(movieDetails); // Full details of all movies
-        } else {
-            console.error("No movies found:", data.Error);
+      document.addEventListener("click", (e) => {
+        const button = e.target.closest(".add-to-watchlist-btn");
+        if (button && button.dataset.buttonIndex) {
+          console.log(button.dataset.buttonIndex);
+          handleAddMyWatchlistBtnClick(button.dataset.buttonIndex);
         }
-    } catch (error) {
-        console.error("Fetch error:", error);
+      });
+    } else {
+      console.error("No movies found:", data.Error);
+      errorMessageMain.classList.remove("hidden");
     }
+  } catch (error) {
+    console.error("Fetch error:", error);
+    errorMessageMain.classList.remove("hidden");
+  }
 }
 
-//Event listener for add to my watchlist button
+// handling the click on the add to my watchlist button
+const handleAddMyWatchlistBtnClick = (movieItemId) => {
+  // Retrieve existing watchlist or initialize an empty array
+  let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+  const newMovieItem = allMovies[movieItemId];
+  const { imdbID, Poster, Title, imdbRating, Runtime, Genre, Plot } =
+    newMovieItem;
 
-document.addEventListener("click", (e) => {
-    const button = e.target.closest(".add-to-watchlist-btn"); 
-    if(button && button.dataset.buttonIndex) {
-        console.log(button.dataset.buttonIndex)
-        handleAddMyWatchlistBtnClick(button.dataset.buttonIndex)
-    }
-    // button && button.dataset.buttonIndex &&  handleAddToOrderBtnClick(button.dataset.buttonIndex);
-  });
-
-
-// handling the click on the order button
-const  handleAddMyWatchlistBtnClick = (movieItemId) => {
-    const newMovieItem = allMovies[movieItemId];
-    console.log(newMovieItem)
-    myWatchlistArr.push(newMovieItem);
-    console.log(myWatchlistArr)
-    const movieItemIndex = myWatchlistArr.length - 1;
-    renderMovieItem(newMovieItem, movieItemIndex);
-    
-    
-    // orderDetails.scrollIntoView({ behavior: "smooth" });
-  };
-
-  // rendering a new order item
-
-const renderMovieItem= (movieItem, index) => {
-    const { Poster, Title, imdbRating, Runtime, Genre, Plot } = movieItem;
-    console.log(Poster)
-    myWatchlistContainer.innerHTML  += `  
-                                <div id="movie-id-${index}" class="movie">
-                                <img id="movie-img-${index}" class="movie-img" src="${Poster}" alt="">
-                                <div id="movie-info-${index}" class="movie-info">
-                                    <div id="movie-title-container-${index}" class="movie-title-container">
-                                        <h2 id="movie-title-${index}" class="movie-title">${Title}</h2>
-                                        <i class="fa-solid fa-star movie-star-icon"></i>
-                                        <p id="movie-raiting-${index}" class="movie-raiting">${imdbRating}</p>
-                                    </div>
-                                    <div class="movie-subtitle-container">
-                                        <p id="movie-duration-${index}" class="movie-duration" >${Runtime}</p>
-                                        <p id="movie-genre-${index}" class="movie-genre">${Genre}</p>
-                                        <button id="remove-from-watchlist-btn" class="remove-from-watchlist-btn" data-remove-button-index="${index}"> <span><i class="fa-solid fa-circle-minus remove-from-my-watchlist-icon"></i></span> Remove</button>
-                                    </div>
-                                    
-                                    <p id="movie-plot-${index}" class="movie-plot">${Plot}</p>
-                                    
-                                </div>
-                                
-                            </div>
-                            <div id="movie-separator-${index}" class="movie-separator"></div>
-                              `;
-  
-   
-   
-  };
-
-
-
-
-
-//poster
-//movie title
-//rating
-//duration
-//genre
-//plot
+  // Check if the movie is already in the watchlist
+  if (!watchlist.some((movie) => movie.id === imdbID)) {
+    watchlist.push({
+      id: imdbID,
+      poster: Poster,
+      title: Title,
+      rating: imdbRating,
+      runtime: Runtime,
+      genre: Genre,
+      plot: Plot,
+    });
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+    alert("Added to watchlist!");
+  } else {
+    alert("Movie is already in the watchlist!");
+  }
+};
