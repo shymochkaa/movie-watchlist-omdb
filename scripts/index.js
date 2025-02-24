@@ -17,7 +17,7 @@ searchBtn.addEventListener("click", () => {
 
 async function handleSearch(searchRequest) {
   const apiKey = "976c63cc"; 
-  const searchUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchRequest}`;
+  const searchUrl = `https://www.omdbapi.com/?apikey=${apiKey}&s=${searchRequest}`;
 
   try {
     errorMessageMain.classList.add("hidden");
@@ -32,7 +32,7 @@ async function handleSearch(searchRequest) {
       // Fetch full details for each movie using imdbID
       const movieDetailsPromises = data.Search.map((movie) =>
         fetch(
-          `http://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}&plot=short`
+          `https://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}&plot=short`
         ).then((res) => res.json())
       );
 
